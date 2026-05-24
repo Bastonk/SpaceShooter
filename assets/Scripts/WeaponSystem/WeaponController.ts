@@ -9,6 +9,7 @@ import { WeaponData } from "./WeaponData";
 import { ProjectilePoolSystem } from "./behaviors/ProjectilePoolSystem";
 import { IShotPattern } from "./patterns/IShotPattern";
 import { SingleShotPattern } from "./patterns/SingleShotPattern";
+import { FactionType } from "./FactionType";
 
 const { ccclass, property } = _decorator;
 
@@ -21,6 +22,9 @@ export class WeaponController extends Component {
     @property(ProjectilePoolSystem)
     private projectilePool: ProjectilePoolSystem | null = null;
 
+    @property
+    private faction: FactionType = FactionType.Player;
+
     private _weaponData: WeaponData | null = null;
 
     private _cooldownTimer: number = 0;
@@ -28,6 +32,8 @@ export class WeaponController extends Component {
     private _fireInterval: number = 0;
 
     private _shootPattern: IShotPattern | null = null;
+
+    private _behaviors: any[] = [];
 
 
 protected start(): void {
@@ -120,7 +126,10 @@ protected start(): void {
     this.projectilePool.spawnProjectile(
         this.muzzle.worldPosition,
         direction,
-        this._weaponData.projectileData
+        this._weaponData.projectileData,
+        this._behaviors = [],
+        this.faction
         );
+
     }
 }

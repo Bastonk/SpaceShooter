@@ -10,6 +10,8 @@ import {
 import { ProjectileData } from "./ProjectileData";
 import { IProjectileBehavior } from "./behaviors/IProjectileBehavior";
 import { DamageReceiver } from "./behaviors/DamageReceiver";
+import { FactionType } from "./FactionType";
+import { FactionMember } from "./FactionMember";
 
 const { ccclass } = _decorator;
 
@@ -35,6 +37,8 @@ export class ProjectileController extends Component {
     private static readonly RAD_TO_DEG =
         180 / Math.PI;
 
+    private _faction: FactionType = FactionType.Neutral;
+
     private _collider: Collider2D | null = null;
 
     private onBeginContact(
@@ -47,6 +51,10 @@ export class ProjectileController extends Component {
             return;
         }
 
+        const targetFaction = otherCollider.getComponent(FactionMember);
+
+        if (targetFaction && targetFaction.faction === this._faction) { return }
+
         const damageReceiver =
             otherCollider.getComponent(DamageReceiver);
 
@@ -56,7 +64,11 @@ export class ProjectileController extends Component {
 
         damageReceiver.takeDamage(this._data.damage);
 
-        this.despawn();
+        this.scheduleOnce(() => {
+
+            this.despawn();
+
+        }, 0);
     }
 
     protected onLoad(): void {
@@ -79,11 +91,14 @@ export class ProjectileController extends Component {
         data: ProjectileData,
         releaseCallback: (projectile: ProjectileController) => void,
         direction: Vec3,
-        behaviors: IProjectileBehavior[] = []
+        behaviors: IProjectileBehavior[] = [],
+        faction
     ): void {
 
         this._data = data;
         this._releaseCallback = releaseCallback;
+
+        this._faction = faction;
 
         this._direction.set(direction);
         this._direction.normalize();

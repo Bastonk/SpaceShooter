@@ -5,6 +5,7 @@ import {
 
 import { EnemyData } from "./EnemyData";
 import { DamageReceiver } from "../WeaponSystem/behaviors/DamageReceiver";
+import { FactionMember } from "../WeaponSystem/FactionMember";
 
 const { ccclass } = _decorator;
 
@@ -25,11 +26,11 @@ export class EnemyController extends Component {
 
         this._data = data;
 
-        this._currentHealth =
-
-            data.maxHealth;
         this._damageReceiver?.initialize(
             data.maxHealth);
+
+        const factionMember = this.getComponent(FactionMember);
+        console.log(factionMember.faction);
 
     }
 }

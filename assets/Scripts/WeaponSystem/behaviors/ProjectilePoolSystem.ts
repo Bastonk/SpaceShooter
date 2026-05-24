@@ -10,6 +10,7 @@ import { PoolSystem } from "../../Core/PoolSystem";
 import { ProjectileController } from "../ProjectileController";
 import { ProjectileData } from "../ProjectileData";
 import { IProjectileBehavior } from "../behaviors/IProjectileBehavior";
+import { FactionType } from "../FactionType";
 
 const { ccclass, property } = _decorator;
 
@@ -40,7 +41,8 @@ export class ProjectilePoolSystem extends Component {
         position: Vec3,
         direction: Vec3,
         data: ProjectileData,
-        behaviors: IProjectileBehavior[] = []
+        behaviors: IProjectileBehavior[] = [],
+        faction: FactionType
     ): ProjectileController | null {
 
         if (!this._pool) {
@@ -66,7 +68,8 @@ export class ProjectilePoolSystem extends Component {
             data,
             this.releaseProjectile.bind(this),
             direction,
-            behaviors
+            behaviors,
+            faction
         );
 
         return projectile;
