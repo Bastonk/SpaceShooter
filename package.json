@@ -1,0 +1,13 @@
+{
+  "name": "Eerie",
+  "uuid": "60b54d8c-e022-4e27-b4d5-a2358b368cb9",
+  "creator": {
+    "version": "3.8.8",
+    "registry": {
+      "remote": {}
+    },
+    "dependencies": {
+      "plugin-import-2x": "1.1.10"
+    }
+  }
+}
