@@ -30,7 +30,5 @@ export class EnemyController extends Component {
             data.maxHealth);
 
         const factionMember = this.getComponent(FactionMember);
-        console.log(factionMember.faction);
-
     }
 }
