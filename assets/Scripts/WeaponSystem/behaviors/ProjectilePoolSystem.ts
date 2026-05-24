@@ -51,7 +51,7 @@ export class ProjectilePoolSystem extends Component {
 
         node.setParent(this.node);
 
-        node.setPosition(position);
+        node.setWorldPosition(position);
 
         node.active = true;
 

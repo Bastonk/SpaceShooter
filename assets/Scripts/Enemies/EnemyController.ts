@@ -1,14 +1,35 @@
-import { _decorator, Component, Node } from 'cc';
-const { ccclass, property } = _decorator;
+import {
+    _decorator,
+    Component
+} from "cc";
 
-@ccclass('EnemyController')
+import { EnemyData } from "./EnemyData";
+import { DamageReceiver } from "../WeaponSystem/behaviors/DamageReceiver";
+
+const { ccclass } = _decorator;
+
+@ccclass("EnemyController")
 export class EnemyController extends Component {
-    start() {
 
+    private _data: EnemyData | null = null;
+
+    private _currentHealth: number = 0;
+
+    private _damageReceiver: DamageReceiver | null = null;
+
+    protected onLoad(): void {
+        this._damageReceiver = this.getComponent(DamageReceiver);
     }
 
-    update(deltaTime: number) {
-        
+    public initialize(data: EnemyData): void {
+
+        this._data = data;
+
+        this._currentHealth =
+
+            data.maxHealth;
+        this._damageReceiver?.initialize(
+            data.maxHealth);
+
     }
 }
-

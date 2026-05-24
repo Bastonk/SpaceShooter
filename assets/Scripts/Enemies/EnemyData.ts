@@ -1,14 +1,6 @@
-import { _decorator, Component, Node } from 'cc';
-const { ccclass, property } = _decorator;
+export interface EnemyData {
+    maxHealth: number;
 
-@ccclass('EnemyData')
-export class EnemyData extends Component {
-    start() {
-
-    }
-
-    update(deltaTime: number) {
-        
-    }
+    moveSpeed: number;
 }
 

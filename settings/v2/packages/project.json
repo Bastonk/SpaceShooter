@@ -7,5 +7,13 @@
       "height": 1080,
       "fitWidth": false
     }
+  },
+  "physics": {
+    "gravity": {
+      "y": 0
+    },
+    "collisionMatrix": {
+      "0": 1
+    }
   }
 }

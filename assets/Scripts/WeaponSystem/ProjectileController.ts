@@ -1,11 +1,15 @@
 import {
     _decorator,
     Component,
-    Vec3
+    Vec3,
+    Collider2D,
+    Contact2DType,
+    IPhysics2DContact
 } from "cc";
 
 import { ProjectileData } from "./ProjectileData";
 import { IProjectileBehavior } from "./behaviors/IProjectileBehavior";
+import { DamageReceiver } from "./behaviors/DamageReceiver";
 
 const { ccclass } = _decorator;
 
@@ -30,6 +34,46 @@ export class ProjectileController extends Component {
 
     private static readonly RAD_TO_DEG =
         180 / Math.PI;
+
+    private _collider: Collider2D | null = null;
+
+    private onBeginContact(
+        selfCollider: Collider2D,
+        otherCollider: Collider2D,
+        contact: IPhysics2DContact | null
+    ): void {
+
+        if (!this._isActive || !this._data) {
+            return;
+        }
+
+        const damageReceiver =
+            otherCollider.getComponent(DamageReceiver);
+
+        if (!damageReceiver) {
+            return
+        }
+
+        damageReceiver.takeDamage(this._data.damage);
+
+        this.despawn();
+    }
+
+    protected onLoad(): void {
+
+        this._collider =
+            this.getComponent(Collider2D);
+
+        if (!this._collider) {
+            return;
+        }
+
+        this._collider.on(
+            Contact2DType.BEGIN_CONTACT,
+            this.onBeginContact,
+            this
+        );
+    }
 
     public initialize(
         data: ProjectileData,
