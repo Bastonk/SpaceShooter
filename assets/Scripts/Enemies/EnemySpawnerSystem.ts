@@ -7,9 +7,8 @@ import {
     Vec3,
     randomRange
 } from "cc";
-
-import { EnemyController }
-    from "./EnemyController";
+import { ProjectilePoolSystem } from "../WeaponSystem/behaviors/ProjectilePoolSystem";
+import { WeaponMount } from "../WeaponSystem/WeaponMount";
 
 const { ccclass, property } = _decorator;
 
@@ -25,6 +24,11 @@ export class EnemySpawnerSystem
     private enemyContainer:
         Node | null = null;
 
+    @property(ProjectilePoolSystem)
+    private projectilePool:
+    ProjectilePoolSystem
+    | null = null;
+    
     @property
     private spawnInterval = 1.5;
 
@@ -85,14 +89,13 @@ export class EnemySpawnerSystem
             spawnPosition
         );
 
-        const enemy =
-            enemyNode.getComponent(
-                EnemyController
-            );
+        const weaponMount =
+    enemyNode.getComponentInChildren(
+        WeaponMount
+    );
 
-        enemy?.initialize({
-            maxHealth: 3,
-            moveSpeed: 200
-        });
+weaponMount?.setProjectilePool(
+    this.projectilePool
+);
     }
 }

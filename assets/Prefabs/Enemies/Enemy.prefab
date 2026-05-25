@@ -43,10 +43,16 @@
       },
       {
         "__id__": 16
+      },
+      {
+        "__id__": 18
+      },
+      {
+        "__id__": 20
       }
     ],
     "_prefab": {
-      "__id__": 18
+      "__id__": 22
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -290,6 +296,52 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "eeajnhMWJDhIyDCZFvZ19T"
+  },
+  {
+    "__type__": "32e492Lsw5OP6LieIZD9xvF",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 19
+    },
+    "maxHealth": 5,
+    "moveSpeed": 200,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "feB8woF+hAr75rGsYFkVSv"
+  },
+  {
+    "__type__": "bfa87ZMAu1Kq5pcXbBbnw2C",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 21
+    },
+    "weaponPrefab": {
+      "__uuid__": "2cef8999-6168-4417-8016-3ff81349c27a",
+      "__expectedType__": "cc.Prefab"
+    },
+    "weaponSocket": {
+      "__id__": 1
+    },
+    "projectilePool": null,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "4eVBWxwQtOL4oVbQQQrYS5"
   },
   {
     "__type__": "cc.PrefabInfo",

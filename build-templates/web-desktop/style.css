@@ -1,19 +1,3 @@
-body {
-    width: 100%;
-    height: 100%;
-    cursor: default;
-    padding: 0;
-    border: 0;
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
-    text-align: center;
-    background-color: white;
-    font-family: Helvetica, Verdana, Arial, sans-serif;
-}
 
 body, canvas, div {
   outline: none;
@@ -32,27 +16,48 @@ input::-webkit-inner-spin-button {
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-canvas {
-  background-color: darkblue;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient( circle, #202030, #050510 );
 }
 
+/* Responsive wrapper */
 #GameWrapper {
     width: 80vw;
     aspect-ratio: 16 / 9;
     max-height: 80vh;
-    position: relative;
+    max-width: calc(80vh * 16 / 9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-
+/* Cocos root */
 #GameDiv {
-    margin: 0 auto;
-    position:relative;
-}
-
-#Cocos3dGameContainer, #GameCanvas {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+}
+
+/* Internal game container */
+#Cocos3dGameContainer {
+    width: 100%;
+    height: 100%;
+}
+
+/* Actual canvas */
+#GameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 :root {

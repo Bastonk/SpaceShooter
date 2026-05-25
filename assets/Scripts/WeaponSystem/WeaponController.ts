@@ -2,81 +2,239 @@ import {
     _decorator,
     Component,
     Node,
-    Vec3
+    Vec3,
+    Enum,
+    Prefab
 } from "cc";
 
-import { WeaponData } from "./WeaponData";
-import { ProjectilePoolSystem } from "./behaviors/ProjectilePoolSystem";
-import { IShotPattern } from "./patterns/IShotPattern";
-import { SingleShotPattern } from "./patterns/SingleShotPattern";
-import { FactionType } from "./FactionType";
+import { WeaponData }
+    from "./WeaponData";
 
-const { ccclass, property } = _decorator;
+import { ProjectileData }
+    from "./ProjectileData";
 
-@ccclass("WeaponController")
-export class WeaponController extends Component {
+import { ProjectilePoolSystem }
+    from "./behaviors/ProjectilePoolSystem";
 
-    @property(Node)
-    private muzzle: Node | null = null;
+import { IShotPattern }
+    from "./patterns/IShotPattern";
 
-    @property(ProjectilePoolSystem)
-    private projectilePool: ProjectilePoolSystem | null = null;
+import { SingleShotPattern }
+    from "./patterns/SingleShotPattern";
 
-    @property
-    private faction: FactionType = FactionType.Player;
+import { SpreadShotPattern }
+    from "./patterns/SpreadShotPattern";
 
-    private _weaponData: WeaponData | null = null;
+import { FactionType }
+    from "./FactionType";
 
-    private _cooldownTimer: number = 0;
+import { IProjectileBehavior }
+    from "./behaviors/IProjectileBehavior";
 
-    private _fireInterval: number = 0;
+export enum ShotPatternType {
 
-    private _shootPattern: IShotPattern | null = null;
+    Single = 0,
 
-    private _behaviors: any[] = [];
-
-
-protected start(): void {
-
-    this.initialize({
-        fireRate: 8,
-
-        projectileData: {
-            speed: 900,
-            lifetime: 2,
-            damage: 1
-        },
-    },
-        new SingleShotPattern()
-    );
+    Spread = 1,
 }
 
+const { ccclass, property } =
+    _decorator;
 
-    public initialize(data: WeaponData, shotPattern: IShotPattern): void {
+@ccclass("WeaponController")
+export class WeaponController
+    extends Component {
 
-        this._weaponData = data;
+    @property(Node)
+    private muzzle:
+        Node | null = null;
 
-        this._cooldownTimer = 0;
+    @property({
+        type: Enum(FactionType)
+    })
+    private faction:
+        FactionType =
+        FactionType.Player;
 
-        this._fireInterval = 1 / data.fireRate;
+    // =========================
+    // Pattern
+    // =========================
 
-        this._shootPattern = shotPattern;
+    @property({
+        type: Enum(ShotPatternType)
+    })
+    private patternType =
+        ShotPatternType.Single;
+
+    @property
+    private spreadCount = 5;
+
+    @property
+    private spreadAngle = 15;
+
+    // =========================
+    // Weapon Stats
+    // =========================
+
+    @property
+    private fireRate = 8;
+
+    // =========================
+    // Projectile Stats
+    // =========================
+
+    @property
+    private projectileSpeed = 2000;
+
+    @property
+    private projectileLifetime = 2;
+
+    @property
+    private projectileDamage = 1;
+
+    @property(Prefab)
+    private projectilePrefab:
+        Prefab | null = null;
+    // =========================
+    // Runtime
+    // =========================
+
+    private _weaponData:
+        WeaponData | null = null;
+
+    private _cooldownTimer = 0;
+
+    private _fireInterval = 0;
+
+    private _shotPattern:
+        IShotPattern | null = null;
+
+    private _behaviors:
+        IProjectileBehavior[] = [];
+
+        private projectilePool:
+        ProjectilePoolSystem | null = null;
+
+
+    // =========================
+    // Lifecycle
+    // =========================
+
+    protected start(): void {
+
+        this.buildWeaponData();
+
+        this.buildShotPattern();
     }
 
-    protected update(deltaTime: number): void {
+    protected update(
+        deltaTime: number
+    ): void {
 
-        this.updateCooldown(deltaTime);
+        this.updateCooldown(
+            deltaTime
+        );
     }
 
-    private updateCooldown(deltaTime: number): void {
+    // =========================
+    // Setup
+    // =========================
+    public setProjectilePool(
+    pool: ProjectilePoolSystem
+    ): void {
 
-        if (this._cooldownTimer > 0) {
+        this.projectilePool = pool;
+    }
 
-            this._cooldownTimer -= deltaTime;
+    private buildWeaponData(): void {
+
+        const projectileData:
+            ProjectileData = {
+
+            speed:
+                this.projectileSpeed,
+
+            lifetime:
+                this.projectileLifetime,
+
+            damage:
+                this.projectileDamage
+        };
+
+        this._weaponData = {
+
+            fireRate:
+                this.fireRate,
+
+            projectileData
+        };
+
+        this._fireInterval =
+            1 / this.fireRate;
+    }
+
+    private buildShotPattern(): void {
+
+        switch (
+        this.patternType
+        ) {
+
+            case ShotPatternType.Single:
+
+                this._shotPattern =
+                    new SingleShotPattern();
+
+                break;
+
+            case ShotPatternType.Spread:
+
+                this._shotPattern =
+                    new SpreadShotPattern(
+                        this.spreadCount,
+                        this.spreadAngle
+                    );
+
+                break;
+        }
+            console.log(
+        this._shotPattern);
+    }
+
+    // =========================
+    // Cooldown
+    // =========================
+
+    private updateCooldown(
+        deltaTime: number
+    ): void {
+
+        if (
+            this._cooldownTimer > 0
+        ) {
+
+            this._cooldownTimer -=
+                deltaTime;
         }
     }
 
-    public tryFire(direction: Vec3): boolean {
+    private canFire(): boolean {
+
+        if (!this._weaponData) {
+            return false;
+        }
+
+        return (
+            this._cooldownTimer <= 0
+        );
+    }
+
+    // =========================
+    // Public API
+    // =========================
+
+    public tryFire(
+        direction: Vec3
+    ): boolean {
 
         if (!this.canFire()) {
             return false;
@@ -87,22 +245,47 @@ protected start(): void {
         return true;
     }
 
-    private canFire(): boolean {
-
-        if (!this._weaponData) {
-            return false;
-        }
-
-        return this._cooldownTimer <= 0;
-    }
-
-    private fire(direction: Vec3): void {
+    public spawnProjectile(
+        direction: Vec3
+    ): void {
 
         if (
             !this._weaponData ||
             !this.projectilePool ||
             !this.muzzle ||
-            !this._shootPattern
+            !this.projectilePrefab
+        ) {
+            return;
+        }
+
+        this.projectilePool
+            .spawnProjectile(
+                this.projectilePrefab,
+                
+                this.muzzle
+                    .worldPosition,
+
+                direction,
+
+                this._weaponData
+                    .projectileData,
+
+                this._behaviors,
+
+                this.faction
+            );
+    }
+
+    // =========================
+    // Internal Fire
+    // =========================
+
+    private fire(
+        direction: Vec3
+    ): void {
+
+        if (
+            !this._shotPattern
         ) {
             return;
         }
@@ -110,26 +293,9 @@ protected start(): void {
         this._cooldownTimer =
             this._fireInterval;
 
-        this._shootPattern.fire(this, direction);
-    }
-
-    public spawnProjectile(direction: Vec3): void {
-
-    if (
-        !this._weaponData ||
-        !this.projectilePool ||
-        !this.muzzle
-    ) {
-        return;
-    }
-
-    this.projectilePool.spawnProjectile(
-        this.muzzle.worldPosition,
-        direction,
-        this._weaponData.projectileData,
-        this._behaviors = [],
-        this.faction
+        this._shotPattern.fire(
+            this,
+            direction
         );
-
     }
 }

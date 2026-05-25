@@ -5,11 +5,21 @@ import {
 
 const { ccclass } = _decorator;
 
+import { EnemyStats } from "./EnemyStats";
+
 @ccclass("EnemyMovementController")
 export class EnemyMovementController
     extends Component {
 
-    private _speed = 300;
+    private _stats : EnemyStats | null = null;
+
+    protected onLoad(): void {
+
+        this._stats =
+            this.getComponent(
+                EnemyStats
+            );
+    }
 
     update(deltaTime: number): void {
 

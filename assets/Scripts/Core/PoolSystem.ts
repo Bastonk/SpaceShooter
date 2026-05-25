@@ -6,51 +6,101 @@ import {
 
 export class PoolSystem {
 
-    private readonly _prefab: Prefab;
+    private readonly _pools =
+        new Map<string, Node[]>();
 
-    private readonly _pool: Node[] = [];
+    // =========================
+    // Public
+    // =========================
 
-    constructor(
+    public prewarm(
         prefab: Prefab,
-        initialSize: number = 10
-    ) {
-        this._prefab = prefab;
+        count: number
+    ): void {
 
-        this.prewarm(initialSize);
-    }
+        const pool =
+            this.getPool(prefab);
 
-    private prewarm(count: number): void {
+        const missingCount =
+            count - pool.length;
 
-        for (let i = 0; i < count; i++) {
+        if (missingCount <= 0) {
+            return;
+        }
 
-            const node = instantiate(this._prefab);
+        for (
+            let i = 0;
+            i < missingCount;
+            i++
+        ) {
+
+            const node =
+                instantiate(prefab);
 
             node.active = false;
 
-            this._pool.push(node);
+            pool.push(node);
         }
     }
 
-    public get(): Node {
+    public getNode(
+        prefab: Prefab
+    ): Node {
 
-        if (this._pool.length > 0) {
+        const pool =
+            this.getPool(prefab);
 
-            return this._pool.pop()!;
+        for (const node of pool) {
+
+            if (!node.active) {
+
+                return node;
+            }
         }
 
-        const node = instantiate(this._prefab);
+        const newNode =
+            instantiate(prefab);
 
-        node.active = false;
+        newNode.active = false;
 
-        return node;
+        pool.push(newNode);
+
+        return newNode;
     }
 
-    public release(node: Node): void {
+    public releaseNode(
+        node: Node
+    ): void {
 
         node.active = false;
 
         node.removeFromParent();
+    }
 
-        this._pool.push(node);
+    // =========================
+    // Internal
+    // =========================
+
+    private getPool(
+        prefab: Prefab
+    ): Node[] {
+
+        const key =
+            prefab.name;
+
+        let pool =
+            this._pools.get(key);
+
+        if (!pool) {
+
+            pool = [];
+
+            this._pools.set(
+                key,
+                pool
+            );
+        }
+
+        return pool;
     }
 }

@@ -20,16 +20,16 @@
         "__id__": 2
       },
       {
-        "__id__": 42
+        "__id__": 35
       },
       {
-        "__id__": 46
+        "__id__": 39
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 48
+      "__id__": 41
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -60,7 +60,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 49
+      "__id__": 44
     },
     "_id": "5911a4b5-b2cc-4cf7-a1b2-6d8c5dab7cd4"
   },
@@ -83,25 +83,25 @@
         "__id__": 8
       },
       {
-        "__id__": 26
+        "__id__": 27
       },
       {
-        "__id__": 22
+        "__id__": 24
       },
       {
-        "__id__": 29
+        "__id__": 30
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 39
+        "__id__": 32
       },
       {
-        "__id__": 40
+        "__id__": 33
       },
       {
-        "__id__": 41
+        "__id__": 34
       }
     ],
     "_prefab": null,
@@ -348,18 +348,30 @@
       },
       {
         "__id__": 17
+      },
+      {
+        "__id__": 18
+      },
+      {
+        "__id__": 19
+      },
+      {
+        "__id__": 20
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 23
-      },
-      {
-        "__id__": 24
+        "__id__": 21
       },
       {
         "__id__": 25
+      },
+      {
+        "__id__": 26
+      },
+      {
+        "__id__": 22
       }
     ],
     "_prefab": null,
@@ -501,7 +513,7 @@
       "__id__": 10
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 12
@@ -692,23 +704,15 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "MainWeapon",
+    "_name": "MainWeaponSocket",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 8
     },
-    "_children": [
-      {
-        "__id__": 18
-      }
-    ],
+    "_children": [],
     "_active": true,
-    "_components": [
-      {
-        "__id__": 20
-      }
-    ],
+    "_components": [],
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -737,27 +741,23 @@
       "y": 0,
       "z": 0
     },
-    "_id": "28ftFQCEFCMpaDkoxZnu1D"
+    "_id": "c8OqDTlCdADL2TOUE+aA4l"
   },
   {
     "__type__": "cc.Node",
-    "_name": "Muzzle-001",
+    "_name": "WeaponSocket1",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 17
+      "__id__": 8
     },
     "_children": [],
     "_active": true,
-    "_components": [
-      {
-        "__id__": 19
-      }
-    ],
+    "_components": [],
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 45.809,
+      "x": 0,
       "y": 0,
       "z": 0
     },
@@ -782,48 +782,131 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d9VgzHPGdIyo1GgnxiRI2f"
+    "_id": "16jgj18ZZNGZaAziuTb8g3"
   },
   {
-    "__type__": "cc.UITransform",
+    "__type__": "cc.Node",
+    "_name": "WeaponSocket2",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 8
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 33554432,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "38GaBjYKtKxqIEKPA6JPuX"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "WeaponSocket3",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 8
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 33554432,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "afRscVFSJPEJcCo2Xa/84j"
+  },
+  {
+    "__type__": "9bef3brByBNzpOcNechNzcF",
     "_name": "",
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 18
+      "__id__": 8
     },
     "_enabled": true,
     "__prefab": null,
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 10,
-      "height": 10
+    "maxSpeed": 8,
+    "acceleration": 8,
+    "weaponMount": {
+      "__id__": 22
     },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+    "playerGraphic": {
+      "__id__": 14
     },
-    "_id": "ab4SfgntxNboSzglmFL+F+"
+    "_id": "94jZKMpXNOkZceDa96zD1o"
   },
   {
-    "__type__": "852b8zQ6flCYrIK/ZUsldPa",
+    "__type__": "bfa87ZMAu1Kq5pcXbBbnw2C",
     "_name": "",
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
+      "__id__": 8
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "weaponPrefab": {
+      "__uuid__": "ffcf4548-d2af-4408-b2fa-5a2ca5c2fd01",
+      "__expectedType__": "cc.Prefab"
+    },
+    "weaponSocket": {
       "__id__": 17
     },
-    "_enabled": true,
-    "__prefab": null,
-    "muzzle": {
-      "__id__": 18
-    },
     "projectilePool": {
-      "__id__": 21
+      "__id__": 23
     },
-    "faction": 1,
-    "_id": "e1Re+f9rxKkoLXuCw9Q164"
+    "_id": "984e0fIKJIK5MmGAq0EHsS"
   },
   {
     "__type__": "be406QqZ+dIQbarArwn4pK2",
@@ -831,15 +914,10 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 22
+      "__id__": 24
     },
     "_enabled": true,
     "__prefab": null,
-    "projectilePrefab": {
-      "__uuid__": "b4878404-98f3-4d30-99b0-c3eb10c7ef62",
-      "__expectedType__": "cc.Prefab"
-    },
-    "initialPoolSize": 50,
     "_id": "f9Vy1BBlVO2LPiQvEK8esF"
   },
   {
@@ -854,7 +932,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 21
+        "__id__": 23
       }
     ],
     "_prefab": null,
@@ -886,26 +964,6 @@
       "z": 0
     },
     "_id": "e1FxiiAwhCkbaLTAIELD20"
-  },
-  {
-    "__type__": "9bef3brByBNzpOcNechNzcF",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 8
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "maxSpeed": 8,
-    "acceleration": 8,
-    "weapon": {
-      "__id__": 20
-    },
-    "playerGraphic": {
-      "__id__": 14
-    },
-    "_id": "94jZKMpXNOkZceDa96zD1o"
   },
   {
     "__type__": "f57e97GYa1P15b7lVH5ivP2",
@@ -944,10 +1002,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 27
+        "__id__": 28
       },
       {
-        "__id__": 28
+        "__id__": 29
       }
     ],
     "_prefab": null,
@@ -986,7 +1044,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 26
+      "__id__": 27
     },
     "_enabled": true,
     "__prefab": null,
@@ -1008,7 +1066,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 26
+      "__id__": 27
     },
     "_enabled": true,
     "__prefab": null,
@@ -1049,15 +1107,11 @@
     "_parent": {
       "__id__": 2
     },
-    "_children": [
-      {
-        "__id__": 30
-      }
-    ],
+    "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 38
+        "__id__": 31
       }
     ],
     "_prefab": null,
@@ -1091,123 +1145,12 @@
     "_id": "b8x9Ju4itBRJCbUCk5Jpdc"
   },
   {
-    "__type__": "cc.Node",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 29
-    },
-    "_prefab": {
-      "__id__": 31
-    },
-    "__editorExtras__": {}
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 30
-    },
-    "asset": {
-      "__uuid__": "85ab94cd-2259-4f70-98d2-a8ea01cda075",
-      "__expectedType__": "cc.Prefab"
-    },
-    "fileId": "54eXuCsD1E1KGHNTu5Xrsx",
-    "instance": {
-      "__id__": 32
-    },
-    "targetOverrides": null,
-    "nestedPrefabInstanceRoots": null
-  },
-  {
-    "__type__": "cc.PrefabInstance",
-    "fileId": "baGg0raqhJB6PbvbO7f4cp",
-    "prefabRootNode": null,
-    "mountedChildren": [],
-    "mountedComponents": [],
-    "propertyOverrides": [
-      {
-        "__id__": 33
-      },
-      {
-        "__id__": 35
-      },
-      {
-        "__id__": 36
-      },
-      {
-        "__id__": 37
-      }
-    ],
-    "removedComponents": []
-  },
-  {
-    "__type__": "CCPropertyOverrideInfo",
-    "targetInfo": {
-      "__id__": 34
-    },
-    "propertyPath": [
-      "_name"
-    ],
-    "value": "Enemy"
-  },
-  {
-    "__type__": "cc.TargetInfo",
-    "localID": [
-      "54eXuCsD1E1KGHNTu5Xrsx"
-    ]
-  },
-  {
-    "__type__": "CCPropertyOverrideInfo",
-    "targetInfo": {
-      "__id__": 34
-    },
-    "propertyPath": [
-      "_lpos"
-    ],
-    "value": {
-      "__type__": "cc.Vec3",
-      "x": -619.413,
-      "y": -367.842,
-      "z": 0
-    }
-  },
-  {
-    "__type__": "CCPropertyOverrideInfo",
-    "targetInfo": {
-      "__id__": 34
-    },
-    "propertyPath": [
-      "_lrot"
-    ],
-    "value": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    }
-  },
-  {
-    "__type__": "CCPropertyOverrideInfo",
-    "targetInfo": {
-      "__id__": 34
-    },
-    "propertyPath": [
-      "_euler"
-    ],
-    "value": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    }
-  },
-  {
     "__type__": "0e15aqzTJpJC6HDtxHErTvt",
     "_name": "",
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 29
+      "__id__": 30
     },
     "_enabled": true,
     "__prefab": null,
@@ -1216,7 +1159,10 @@
       "__expectedType__": "cc.Prefab"
     },
     "enemyContainer": {
-      "__id__": 29
+      "__id__": 30
+    },
+    "projectilePool": {
+      "__id__": 23
     },
     "spawnInterval": 1.5,
     "spawnY": 300,
@@ -1304,13 +1250,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 43
+        "__id__": 36
       },
       {
-        "__id__": 44
+        "__id__": 37
       },
       {
-        "__id__": 45
+        "__id__": 38
       }
     ],
     "_prefab": null,
@@ -1349,7 +1295,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 42
+      "__id__": 35
     },
     "_enabled": true,
     "__prefab": null,
@@ -1361,7 +1307,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 42
+      "__id__": 35
     },
     "_enabled": true,
     "__prefab": null,
@@ -1373,7 +1319,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 42
+      "__id__": 35
     },
     "_enabled": true,
     "__prefab": null,
@@ -1381,13 +1327,13 @@
       "__id__": 4
     },
     "canvasTransform": {
-      "__id__": 39
+      "__id__": 32
     },
     "player": {
-      "__id__": 23
+      "__id__": 21
     },
     "targetGraphic": {
-      "__id__": 27
+      "__id__": 28
     },
     "_id": "972K80KDFJGJhwpGo0jLeV"
   },
@@ -1403,7 +1349,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 47
+        "__id__": 40
       }
     ],
     "_prefab": null,
@@ -1442,7 +1388,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 46
+      "__id__": 39
     },
     "_enabled": true,
     "__prefab": null,
@@ -1454,38 +1400,57 @@
     "asset": null,
     "fileId": "5911a4b5-b2cc-4cf7-a1b2-6d8c5dab7cd4",
     "instance": null,
-    "targetOverrides": null,
-    "nestedPrefabInstanceRoots": [
+    "targetOverrides": [
       {
-        "__id__": 30
+        "__id__": 42
       }
+    ]
+  },
+  {
+    "__type__": "cc.TargetOverrideInfo",
+    "source": {
+      "__id__": 21
+    },
+    "sourceInfo": null,
+    "propertyPath": [
+      "weapon"
+    ],
+    "target": null,
+    "targetInfo": {
+      "__id__": 43
+    }
+  },
+  {
+    "__type__": "cc.TargetInfo",
+    "localID": [
+      "48R00WK/FPupgRy8mb7Fwq"
     ]
   },
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 50
+      "__id__": 45
     },
     "shadows": {
-      "__id__": 51
+      "__id__": 46
     },
     "_skybox": {
-      "__id__": 52
+      "__id__": 47
     },
     "fog": {
-      "__id__": 53
+      "__id__": 48
     },
     "octree": {
-      "__id__": 54
+      "__id__": 49
     },
     "skin": {
-      "__id__": 55
+      "__id__": 50
     },
     "lightProbeInfo": {
-      "__id__": 56
+      "__id__": 51
     },
     "postSettings": {
-      "__id__": 57
+      "__id__": 52
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

@@ -6,69 +6,97 @@ import {
     Vec3
 } from "cc";
 
-import { PoolSystem } from "../../Core/PoolSystem";
-import { ProjectileController } from "../ProjectileController";
-import { ProjectileData } from "../ProjectileData";
-import { IProjectileBehavior } from "../behaviors/IProjectileBehavior";
-import { FactionType } from "../FactionType";
+import { PoolSystem }
+from "../../Core/PoolSystem";
 
-const { ccclass, property } = _decorator;
+import { ProjectileController }
+from "../ProjectileController";
+
+import { ProjectileData }
+from "../ProjectileData";
+
+import { IProjectileBehavior }
+from "../behaviors/IProjectileBehavior";
+
+import { FactionType }
+from "../FactionType";
+
+const { ccclass }
+    = _decorator;
 
 @ccclass("ProjectilePoolSystem")
-export class ProjectilePoolSystem extends Component {
+export class ProjectilePoolSystem
+extends Component {
 
-    @property(Prefab)
-    private projectilePrefab: Prefab | null = null;
+    private _pool =
+        new PoolSystem();
 
-    @property
-    private initialPoolSize: number = 50;
+    // =========================
+    // Public
+    // =========================
 
-    private _pool: PoolSystem | null = null;
+    public prewarm(
+        prefab: Prefab,
+        count: number
+    ): void {
 
-    protected onLoad(): void {
-
-        if (!this.projectilePrefab) {
-            return;
-        }
-
-        this._pool = new PoolSystem(
-            this.projectilePrefab,
-            this.initialPoolSize
+        this._pool.prewarm(
+            prefab,
+            count
         );
     }
 
     public spawnProjectile(
+
+        projectilePrefab: Prefab,
+
         position: Vec3,
+
         direction: Vec3,
+
         data: ProjectileData,
-        behaviors: IProjectileBehavior[] = [],
+
+        behaviors:
+            IProjectileBehavior[] = [],
+
         faction: FactionType
+
     ): ProjectileController | null {
 
-        if (!this._pool) {
-            return null;
-        }
-
-        const node = this._pool.get();
+        const node =
+            this._pool.getNode(
+                projectilePrefab
+            );
 
         node.setParent(this.node);
 
-        node.setWorldPosition(position);
+        node.setWorldPosition(
+            position
+        );
 
         node.active = true;
 
         const projectile =
-            node.getComponent(ProjectileController);
+            node.getComponent(
+                ProjectileController
+            );
 
         if (!projectile) {
+
             return null;
         }
 
         projectile.initialize(
+
             data,
-            this.releaseProjectile.bind(this),
+
+            this.releaseProjectile
+                .bind(this),
+
             direction,
+
             behaviors,
+
             faction
         );
 
@@ -76,13 +104,12 @@ export class ProjectilePoolSystem extends Component {
     }
 
     public releaseProjectile(
-        projectile: ProjectileController
+        projectile:
+            ProjectileController
     ): void {
 
-        if (!this._pool) {
-            return;
-        }
-
-        this._pool.release(projectile.node);
+        this._pool.releaseNode(
+            projectile.node
+        );
     }
 }

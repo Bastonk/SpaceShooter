@@ -9,7 +9,7 @@ import {
 } from 'cc';
 
 import { InputManager } from './InputManager';
-import { WeaponController } from "../WeaponSystem/WeaponController";
+import { WeaponMount } from '../WeaponSystem/WeaponMount';
 
 
 const { ccclass, property } = _decorator;
@@ -22,8 +22,8 @@ export class PlayerController extends Component {
     @property
     acceleration = 2200;
 
-    @property(WeaponController)
-    private weapon: WeaponController | null = null;
+    @property(WeaponMount)
+    private weaponMount: WeaponMount | null = null;
 
     private readonly _shootDirection =
         new Vec3();
@@ -108,7 +108,7 @@ export class PlayerController extends Component {
 
         if (actions.shoot) {
             this._shootDirection.set(aim.x, aim.y, 0);
-            this.weapon.tryFire(this._shootDirection);
+            this.weaponMount?.tryFire(this._shootDirection);
             console.log("Shoot!");
         };
     }
